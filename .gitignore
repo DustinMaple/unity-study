@@ -1,0 +1,6 @@
+PlayGround/Library
+PlayGround/Logs
+PlayGround/PlayGround.sln
+PlayGround/UserSettings
+PlayGround/*.csproj
+.DS_Store
