@@ -5,20 +5,25 @@ using UnityEngine;
 
 public class HealthCollectable : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    public int changeValue = 1;
+    
     private void OnTriggerEnter2D(Collider2D col)
     {
         Debug.Log($"{col.gameObject.name} enter");
+        
+        RubyController rubyController = col.GetComponent<RubyController>();
+        if (rubyController == null)
+        {
+            return;
+        }
+
+        if (!rubyController.CanChange(changeValue))
+        {
+            return;
+        }
+
+        rubyController.ChangeHp(changeValue);
+        Destroy(gameObject);
+
     }
 }
