@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7502380383774299439}
   - component: {fileID: 1868976097923106016}
   m_Layer: 8
-  m_Name: CogBullet
+  m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 200
+  hitEffect: {fileID: 1983518275825971423, guid: e99977733e7be450c939c6e039964f45, type: 3}
 --- !u!61 &1868976097923106016
 BoxCollider2D:
   m_ObjectHideFlags: 0

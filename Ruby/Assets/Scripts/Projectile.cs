@@ -7,6 +7,8 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float force = 50;
+
+    public ParticleSystem hitEffect;
     
     private Rigidbody2D _rigidbody2D;
 
@@ -51,5 +53,10 @@ public class Projectile : MonoBehaviour
             enemyController.Fix();
         }
         Destroy(gameObject);
+
+        if (hitEffect != null)
+        {
+            Instantiate(hitEffect, transform.position, Quaternion.identity);
+        }
     }
 }
