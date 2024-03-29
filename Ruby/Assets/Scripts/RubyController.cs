@@ -124,6 +124,7 @@ public class RubyController : MonoBehaviour
         }
 
         curHp = Mathf.Clamp(curHp + value, 0, maxHp);
+        UIHealthBar.Inst.SetRate(curHp * 1f / maxHp);
 
         if (value < 0)
         {
