@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
     
     private bool _fixFinish = false;
     private int _fixTime = 0;
+    private float _exitTime;
 
     public bool FixFinish
     {
@@ -24,7 +25,14 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (_exitTime > 0)
+        {
+            _exitTime -= Time.deltaTime;
+            if (_exitTime < 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
     public void Fix()
@@ -34,6 +42,12 @@ public class EnemyController : MonoBehaviour
         if (_fixTime >= Mathf.Max(1, maxFixTime))
         {
             _fixFinish = true;
+            _exitTime = 2f;
+            Animator animator = GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.SetTrigger("Fixed");
+            }
 
             BotMove botMove = GetComponent<BotMove>();
             if (botMove != null)

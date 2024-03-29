@@ -834,29 +834,6 @@ Transform:
   m_Father: {fileID: 1038466120}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &481598310 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7448553446784908829, guid: 98936ce0240ba4a19994de41d9d97207, type: 3}
-  m_PrefabInstance: {fileID: 7448553446859646331}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &481598315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 481598310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8449358c4b5c743078a0bc0b6fbc33a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  patrolTargets:
-  - {x: -5, y: 0}
-  - {x: -7, y: 0}
-  - {x: -7, y: 2}
-  - {x: -5, y: 2}
-  speed: 1
 --- !u!1 &484551299
 GameObject:
   m_ObjectHideFlags: 0
