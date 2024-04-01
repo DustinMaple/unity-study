@@ -1,25 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
     //最大修复次数
     public int maxFixTime = 1;
-    
+    public AudioClip fixAudio;
+    private float _exitTime;
+
     private bool _fixFinish = false;
     private int _fixTime = 0;
-    private float _exitTime;
 
     public bool FixFinish
     {
         get => _fixFinish;
-    }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame
@@ -59,6 +52,13 @@ public class EnemyController : MonoBehaviour
             if (rigidbody2D != null)
             {
                 rigidbody2D.simulated = false;
+            }
+
+            AudioSource audioSource = GetComponent<AudioSource>();
+            if (audioSource)
+            {
+                audioSource.Stop();
+                audioSource.PlayOneShot(fixAudio);
             }
         }
     }
