@@ -1,16 +1,15 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthCollectable : MonoBehaviour
 {
     public int changeValue = 1;
-    
+
+    public AudioClip autioClip;
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         Debug.Log($"{col.gameObject.name} enter");
-        
+
         RubyController rubyController = col.GetComponent<RubyController>();
         if (rubyController == null)
         {
@@ -23,7 +22,11 @@ public class HealthCollectable : MonoBehaviour
         }
 
         rubyController.ChangeHp(changeValue);
-        Destroy(gameObject);
+        if (autioClip)
+        {
+            rubyController.PlaySound(autioClip);
+        }
 
+        Destroy(gameObject);
     }
 }

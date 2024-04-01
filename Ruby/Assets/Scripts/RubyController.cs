@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RubyController : MonoBehaviour
@@ -10,7 +7,9 @@ public class RubyController : MonoBehaviour
     public int maxHp = 5;
     public float invisibleConfig = 0;
     public Projectile projectile;
+
     private Animator _animator;
+    private AudioSource _audioSource;
 
     private float _horizontal;
     private bool _invisibling;
@@ -29,6 +28,7 @@ public class RubyController : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
         curHp = maxHp;
         _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
         _look = Vector2.down;
     }
 
@@ -41,11 +41,17 @@ public class RubyController : MonoBehaviour
         TalkTo();
     }
 
+    private void FixedUpdate()
+    {
+        TryMove();
+    }
+
     private void TalkTo()
     {
         if (Input.GetKeyUp("space"))
         {
-            RaycastHit2D raycastHit2D = Physics2D.Raycast(_rigidbody2D.position + Vector2.up *0.2f, _look, 1.5f, LayerMask.GetMask("Npc"));
+            RaycastHit2D raycastHit2D = Physics2D.Raycast(_rigidbody2D.position + Vector2.up * 0.2f, _look, 1.5f,
+                LayerMask.GetMask("Npc"));
             if (raycastHit2D.collider)
             {
                 // Debug.Log($"Collide with {raycastHit2D.collider.name}");
@@ -56,11 +62,6 @@ public class RubyController : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void FixedUpdate()
-    {
-        TryMove();
     }
 
     private void TryFire()
@@ -168,5 +169,10 @@ public class RubyController : MonoBehaviour
         {
             return curHp < maxHp;
         }
+    }
+
+    public void PlaySound(AudioClip audioClip, float volume = 1)
+    {
+        _audioSource.PlayOneShot(audioClip, volume);
     }
 }
