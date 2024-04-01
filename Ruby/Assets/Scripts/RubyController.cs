@@ -2,17 +2,18 @@ using UnityEngine;
 
 public class RubyController : MonoBehaviour
 {
-    public float speed = 5F;
-    public int curHp;
     public int maxHp = 5;
     public float invisibleConfig = 0;
     public Projectile projectile;
+    public float speed = 5F;
+    public int curHp;
 
     private Animator _animator;
     private AudioSource _audioSource;
 
     private float _horizontal;
     private bool _invisibling;
+
 
     private float _invisibTime = 0;
     private Vector2 _look;
@@ -44,6 +45,47 @@ public class RubyController : MonoBehaviour
     private void FixedUpdate()
     {
         TryMove();
+    }
+
+    public void ChangeHp(int value)
+    {
+        if (!CanChange(value))
+        {
+            return;
+        }
+
+        curHp = Mathf.Clamp(curHp + value, 0, maxHp);
+        UIHealthBar.Inst.SetRate(curHp * 1f / maxHp);
+
+        if (value < 0)
+        {
+            if (invisibleConfig > 0)
+            {
+                _invisibTime = invisibleConfig;
+                _invisibling = true;
+            }
+
+            _animator.SetTrigger("Hit");
+        }
+
+        Debug.Log($"Ruby change hp, change value[{value}], cur hp [{curHp}]");
+    }
+
+    public bool CanChange(int value)
+    {
+        if (value < 0)
+        {
+            return !_invisibling && curHp > 0;
+        }
+        else
+        {
+            return curHp < maxHp;
+        }
+    }
+
+    public void PlaySound(AudioClip audioClip, float volume = 1)
+    {
+        _audioSource.PlayOneShot(audioClip, volume);
     }
 
     private void TalkTo()
@@ -133,46 +175,5 @@ public class RubyController : MonoBehaviour
     {
         // stop
         _animator.SetFloat("Speed", 0F);
-    }
-
-    public void ChangeHp(int value)
-    {
-        if (!CanChange(value))
-        {
-            return;
-        }
-
-        curHp = Mathf.Clamp(curHp + value, 0, maxHp);
-        UIHealthBar.Inst.SetRate(curHp * 1f / maxHp);
-
-        if (value < 0)
-        {
-            if (invisibleConfig > 0)
-            {
-                _invisibTime = invisibleConfig;
-                _invisibling = true;
-            }
-
-            _animator.SetTrigger("Hit");
-        }
-
-        Debug.Log($"Ruby change hp, change value[{value}], cur hp [{curHp}]");
-    }
-
-    public bool CanChange(int value)
-    {
-        if (value < 0)
-        {
-            return !_invisibling && curHp > 0;
-        }
-        else
-        {
-            return curHp < maxHp;
-        }
-    }
-
-    public void PlaySound(AudioClip audioClip, float volume = 1)
-    {
-        _audioSource.PlayOneShot(audioClip, volume);
     }
 }
