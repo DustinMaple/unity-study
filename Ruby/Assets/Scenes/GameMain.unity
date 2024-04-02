@@ -11267,6 +11267,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7448553446784908828, guid: 98936ce0240ba4a19994de41d9d97207, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7448553446784908829, guid: 98936ce0240ba4a19994de41d9d97207, type: 3}
       propertyPath: m_Name
       value: Bot

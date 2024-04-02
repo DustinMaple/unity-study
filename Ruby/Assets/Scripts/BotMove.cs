@@ -43,7 +43,7 @@ public class BotMove : MonoBehaviour
         float distance = Vector2.Distance(cur, target);
         if (moveDis >= distance)
         {
-            _rigidbody2D.position = target;
+            _rigidbody2D.MovePosition(target);
             _curPatrolIndex++;
 
             if (_curPatrolIndex >= patrolTargets.Count)
@@ -56,7 +56,7 @@ public class BotMove : MonoBehaviour
             float rate = moveDis / distance;
             cur.x += dx * rate;
             cur.y += dy * rate;
-            _rigidbody2D.position = cur;
+            _rigidbody2D.MovePosition(cur);
         }
 
         PlayAnimator(dx, dy);
