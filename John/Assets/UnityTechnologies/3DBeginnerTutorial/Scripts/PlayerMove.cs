@@ -67,7 +67,7 @@ public class PlayerMove : MonoBehaviour
 
     private void OnAnimatorMove()
     {
-        _rigidbody.MovePosition(_moveDir * _animator.deltaPosition.magnitude);
+        _rigidbody.MovePosition(_rigidbody.position + _moveDir * _animator.deltaPosition.magnitude);
         _rigidbody.MoveRotation(_targetRotation);
     }
 }
