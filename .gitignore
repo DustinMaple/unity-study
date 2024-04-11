@@ -4,6 +4,7 @@
 */UserSettings
 */*.csproj
 .DS_Store
+*/.DS_Store
 */.idea
 */Temp
 */obj
