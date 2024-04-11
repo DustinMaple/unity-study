@@ -3,50 +3,75 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class GameEnd : MonoBehaviour
 {
     public GameObject player;
 
-    public CanvasGroup endUI;
-    
+    public CanvasGroup successEndUI;
+    public CanvasGroup failEndUI;
+
+
     private float _fadeDuration = 2f;
     private float _displayDuration = 3f;
-    
+
     private float _timer;
-    private bool _isEnd;
-    
+    private bool _isSuccess;
+    private bool _isCaught;
+
+
     // Start is called before the first frame update
     void Update()
     {
-        if (_isEnd)
+        if (_isSuccess || _isCaught)
         {
-            EndGame();
+            if (_isSuccess)
+            {
+                EndGame(successEndUI, true);
+            }
+            else
+            {
+                EndGame(failEndUI, false);
+            }
         }
+    }
+
+    public void Caught()
+    {
+        _isCaught = true;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("OnTriggerEnter");
-        if (other.gameObject == player && !_isEnd)
+        if (other.gameObject == player && !_isSuccess)
         {
             Debug.Log("GameEnd");
-            _isEnd = true;
+            _isSuccess = true;
             _timer = 0f;
         }
     }
 
-    private void EndGame()
+    private void EndGame(CanvasGroup ui, bool success)
     {
         _timer += Time.deltaTime;
         if (_timer > _fadeDuration + _displayDuration)
         {
-            // Application.Quit();
-            UnityEditor.EditorApplication.isPlaying = false;
+            if (success)
+            {
+                // Application.Quit();
+                UnityEditor.EditorApplication.isPlaying = false;
+            }
+            else
+            {
+                SceneManager.LoadScene(0);
+            }
         }
         else
         {
-            endUI.alpha = Mathf.Lerp(0f, 1f, _timer / _fadeDuration);
+            ui.alpha = Mathf.Lerp(0f, 1f, _timer / _fadeDuration);
         }
     }
 }
