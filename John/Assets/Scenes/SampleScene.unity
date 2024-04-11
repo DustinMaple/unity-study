@@ -483,7 +483,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 205287722f2b6b64583b86d65fdeeb11, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -577,20 +577,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 988516005026855921, guid: ac85645ed2c6e4f83ae19b1dcef17f60, type: 3}
   m_PrefabInstance: {fileID: 5378009180833983941}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &451413193
-CapsuleCollider:
+--- !u!81 &451413195
+AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 451413188}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.17802751
-  m_Height: 1.3393946
-  m_Direction: 1
-  m_Center: {x: 0.004639983, y: 0.6686363, z: 0.04106784}
 --- !u!1 &478956887
 GameObject:
   m_ObjectHideFlags: 0
@@ -3654,7 +3648,6 @@ GameObject:
   m_Component:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
-  - component: {fileID: 963194226}
   - component: {fileID: 963194229}
   - component: {fileID: 963194230}
   m_Layer: 0
@@ -3664,14 +3657,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &963194226
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0
@@ -4218,6 +4203,8 @@ MonoBehaviour:
   player: {fileID: 451413188}
   successEndUI: {fileID: 1088824039}
   failEndUI: {fileID: 203748760}
+  winAudioSource: {fileID: 141885292}
+  caughtAudioSource: {fileID: 478956889}
 --- !u!1 &1616043240
 GameObject:
   m_ObjectHideFlags: 0
@@ -4387,6 +4374,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1616043241}
     m_Modifications:
+    - target: {fileID: 1764995361533182293, guid: 8f6309a25b4dd4e05ab209dc614ceeee, type: 3}
+      propertyPath: MaxDistance
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5569292497504244056, guid: 8f6309a25b4dd4e05ab209dc614ceeee, type: 3}
       propertyPath: player
       value: 
@@ -4521,6 +4512,18 @@ PrefabInstance:
     - target: {fileID: 988516005027145681, guid: ac85645ed2c6e4f83ae19b1dcef17f60, type: 3}
       propertyPath: m_Name
       value: JohnLemon
+      objectReference: {fileID: 0}
+    - target: {fileID: 5443255144597709033, guid: ac85645ed2c6e4f83ae19b1dcef17f60, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5443255144597709033, guid: ac85645ed2c6e4f83ae19b1dcef17f60, type: 3}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5443255144597709033, guid: ac85645ed2c6e4f83ae19b1dcef17f60, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

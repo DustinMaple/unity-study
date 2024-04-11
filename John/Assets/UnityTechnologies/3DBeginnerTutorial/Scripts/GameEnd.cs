@@ -12,6 +12,8 @@ public class GameEnd : MonoBehaviour
 
     public CanvasGroup successEndUI;
     public CanvasGroup failEndUI;
+    public AudioSource winAudioSource;
+    public AudioSource caughtAudioSource;
 
 
     private float _fadeDuration = 2f;
@@ -20,6 +22,7 @@ public class GameEnd : MonoBehaviour
     private float _timer;
     private bool _isSuccess;
     private bool _isCaught;
+    private bool _audioPlaying;
 
 
     // Start is called before the first frame update
@@ -29,11 +32,11 @@ public class GameEnd : MonoBehaviour
         {
             if (_isSuccess)
             {
-                EndGame(successEndUI, true);
+                EndGame(successEndUI, true, winAudioSource);
             }
             else
             {
-                EndGame(failEndUI, false);
+                EndGame(failEndUI, false, caughtAudioSource);
             }
         }
     }
@@ -54,8 +57,14 @@ public class GameEnd : MonoBehaviour
         }
     }
 
-    private void EndGame(CanvasGroup ui, bool success)
+    private void EndGame(CanvasGroup ui, bool success, AudioSource audioSource)
     {
+        if (!_audioPlaying)
+        {
+            _audioPlaying = true;
+            audioSource.Play();
+        }
+        
         _timer += Time.deltaTime;
         if (_timer > _fadeDuration + _displayDuration)
         {
